@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" id="body">
+<head>
+  <title>Digital Society School Feedback </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!--should use a CSS file for this -->
+  <style type="text/css">
+    @font-face {
+      font-family: Bungee;
+      src: url(fonts/OpenSans-Bold.ttf) format("truetype");
+    }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .btn-teal{
+      background-color: rgb(55,100,167);
+      color:#ffffff;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .btn-green{
+      background-color: rgb(0,148,87);
+      color:#ffffff;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .btn-red{
+      background-color: rgb(219,44,41);
+      color:#ffffff;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .btn-yellow{
+      background-color: rgb(255,233,16);
+      color:#ffffff;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .row{
+      padding-top: 10px;
+    }
+    .max {
+
+      height:75px;
+      width:135px;
+    }
+    h1 {
+      font-weight: 1000;
+      font-size: 32pt;
+    }
+    .center-block {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      text-align: center;
+    }
+
+    #container {
+      width: 500px;
+      margin: auto !important;
+      display: block;
+      height: 150px;
+      position: relative;
+      list-style-type: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .buddy {
+      display: none;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      color: #fff;
+      padding: 20px;
+      width: 250px;
+      height: 150px;
+      left: 50px;
+      position: absolute;
+      cursor: hand;
+    }
+    .rotate-left {
+      transform: rotate(30deg) scale(0.8);
+      transition: 2s;
+      margin-left: 400px;
+      cursor: e-resize;
+      opacity: 0;
+      z-index: 10;
+    }
+    .rotate-right {
+      transform: rotate(-30deg) scale(0.8);
+      transition: 2s;
+      opacity: 0;
+      margin-left: -400px;
+      cursor: w-resize;
+      z-index: 10;
+    }
+    .avatar {
+      background: #222;
+      border: 2px solid lightgrey;
+      width: 250px;
+      height: 150px;
+      display: block;
+      background-size: auto 160% !important;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .like {
+      border-radius: 5px;
+      padding: 5px 10px;
+      border: 2px solid green;
+      color: green;
+      text-transform: uppercase;
+      font-size: 15px;
+      position: absolute;
+      top: 50px;
+      right: 40px;
+      text-shadow: none;
+    }
+    .dislike {
+      border-radius: 5px;
+      padding: 5px 10px;
+      border: 2px solid red;
+      color: red;
+      text-transform: uppercase;
+      font-size: 15px;
+      position: absolute;
+      top: 50px;
+      left: 40px;
+      text-shadow: none;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    jQuery(document).on("mobileinit", function() {
+      jQuery.mobile.autoInitializePage = false;
+    });
+  </script>
+  <script src="https://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="jquery.touchSwipe.min.js"></script>
+
+</head>
+<body id="bodyID" >
+  <div class="container" id="containerID">
+    <div class="row">
+      <div class="col" id="swipe">
+        <img src="img/tinderHeader.png" class="image-toggle" alt="header" width="100%">
+      </div>
+    </div>
+    <div class="row" id="questionRow">
+      <div class="col" id="textbit" style="text-align:center;">
+        <p><span style="font-family: Bungee; font-size: 25px;">So, how do you like the showcase so far?</span></p>
+      </div>
+    </div>
+    <div class="row" id="choiceRow" style="padding-top:70px;">
+      <div class="col-3 offset-2">
+        <p><img src="img/plus.png" height=100% width=100% id="gotoComment"></p>
+        <p style="text-align:center; font-family:Bungee">Add a comment</p>
+      </div>
+      <div class="col-3 offset-2">
+        <p><img src="img/swipeIcon.png" height=100% width=100% id="gotoTinder"></p>
+        <p style="text-align:center; font-family:Bungee">Rate comments</p>
+      </div>
+    </div>
+    <div class="row" style="display:none;" id="instructionsRow">
+      <div class="col-2">
+        <img src="img/arrowLeft.png" class="img-fluid">
+      </div>
+      <div class="col-2">
+        <img src="/img/thumbDOWN.png" class="img-fluid">
+      </div>
+      <div class="col-2 offset-4">
+        <img src="/img/thumbUP.png" class="img-fluid">
+      </div>
+      <div class="col-2">
+        <img src="img/arrowRight.png" class="img-fluid">
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col">
+        <div id="container" style="display:none;">
+          <div class="buddy" style="display:block;"><p id="para1"style="color:black;"></p></div>
+          <div class="buddy"><p id="para2"style="color:black;"></p></div>
+          <div class="buddy"><p id="para3"style="color:black;"></p></div>
+          <div class="buddy"><p id="para4"style="color:black;"></p></div>
+          <div class="buddy"><p id="para5"style="color:black;"></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" style ="display:none;" id="formID">
+      <textarea class="form-control" rows="5" id="comment" maxlength="140" placeholder="Click here to add your own comment"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <img src="img/thumbDOWN.png" class="img-fluid" id="thumbdown" style="display:none;">
+      </div>
+
+      <div class="col-3 align-self-center" style="text-align:center; ">
+        <img src="img/plus.png" width="100%" height="100%" id="plus" style="display:none;">
+      </div>
+
+      <div class="col-4">
+        <img src="img/thumbUP.png" class="img-fluid" id="thumbup" style="display:none;">
+      </div>
+      <div class="col-6 offset-3" style="display:none; text-align:center; margin-top: -25px;" id="thankyou">
+        <p style="font-family: Bungee; font-size: 17px;">Thank you for your feedback. You can redeem your reward from the Mystery Box!<p>
+          <p></p>
+          <img src = "img/block.png" class="img-fluid">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 offset-3">
+          <p id="tapContinue" style="display:none;">Tap here to continue</p>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      var myDB;
+      var current = 0; //keeps track of the current index for myDB array
+      var currentWait = false; //can't swipe if it's true
+      $(document).ready(function(){
+        getJSONcomment(); //retrieves the DB information in JSON format
+
+        <!--more information about the swipe documentation can be found at https://codepen.io/developingidea/pen/meAIn-->
+        $(".buddy").on("swiperight",function(){
+          if (currentWait== false){
+            currentWait=true;
+            $.get("updateUpvotes.php?id="+myDB[current].id+"&newValue="+(myDB[current].upvotes + 1)); //construct get request and executes it. Selects current id and upvotes, then adds one upvote and updates it in the DB
+            current++;
+            setTimeout("currentWait=false;", 700); //delay is the same as it takes to fade out swiped card
+          }
+          $(this).addClass('rotate-left').delay(700).fadeOut(1);
+          $('.buddy').find('.status').remove();
+
+          $(this).append('<div class="status like">Like!</div>');
+          if ( $(this).is(':last-child') ) {
+            <!--$('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(600);-->
+            setTimeout("$('#container').hide(); $('#thumbup').hide(); $('#thumbdown').hide(); $('#gotoComment').show(); $('#thankyou').show(); $('#instructionsRow').hide(); $('#questionRow').hide();", 700); //executes the functions if it's the last child
+
+          } else {
+            $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+          }
+        });
+
+        $(".buddy").on("swipeleft",function(){
+          if (currentWait== false){
+            currentWait=true;
+            $.get("updateUpvotes.php?id="+myDB[current].id+"&newValue="+(myDB[current].upvotes - 1)); //construct get request and executes it. Selects current id and upvotes, then decreases one upvote and updates it in the DB
+            current++;
+            setTimeout("currentWait=false;", 700);
+          }
+          $(this).addClass('rotate-right').delay(700).fadeOut(1);
+          $('.buddy').find('.status').remove();
+          $(this).append('<div class="status dislike">Dislike!</div>');
+
+          if ( $(this).is(':last-child') ) {
+            <!--$('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(600);-->
+            <!--alert('OUPS');-->
+            setTimeout("$('#container').hide(); $('#thumbup').hide(); $('#thumbdown').hide(); $('#gotoComment').show(); $('#thankyou').show(); $('#instructionsRow').hide(); $('#questionRow').hide();", 700); //executes the functions if it's the last child
+
+          } else {
+            $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+          }
+        });
+
+        $('#gotoComment').on('click', function(){
+          $('#choiceRow').hide();
+          $('#formID').show();
+          $('#plus').show();
+        });
+
+        $('#gotoTinder').on('click', function(){
+
+          //loads 5 random commetns from the DB into the swipeable cards ##TODO currently doesn't allow you to go to the swipeable cards if there are less than 5 comments in the databsae
+          $('#para1').text(myDB[0].comment);
+          $('#para2').text(myDB[1].comment);
+          $('#para3').text(myDB[2].comment);
+          $('#para4').text(myDB[3].comment);
+          $('#para5').text(myDB[4].comment);
+          $('#choiceRow').hide();
+          $('#container').show();
+          $('#instructionsRow').show();
+        });
+
+        //doesn't use these functions currently as these id's are not shown in the page, still functions if #thumbup/down is visible
+        $('#thumbup').on('click', function(){
+          $.get("updateUpvotes.php?id="+myDB[current].id+"&newValue="+(myDB[current].upvotes + 1));
+          if (current < (myDB.length -1)){current++;
+            $('#comment').val(myDB[current].comment);}
+            else {$('#comment').val("You've rated all the comments!");
+            $('#thumbup').hide();
+            $('#thumbdown').hide();}
+          });
+          $('#thumbdown').on('click', function(){
+            $.get("updateUpvotes.php?id="+myDB[current].id+"&newValue="+(myDB[current].upvotes -1));
+            if (current < (myDB.length -1)){current++;
+              $('#comment').val(myDB[current].comment);}
+              else {$('#comment').val("You've rated all the comments!");
+              $('#thumbup').hide();
+              $('#thumbdown').hide();}
+            });
+
+
+            $('#plus').on('click', function(){
+              $.get("insertComment.php?answer=" + $('#comment').val()); //gets the comment from the user and send it to the DB
+              $('#comment').prop("readonly", true); //make it so users can't click on it
+              $('#comment').prop('disabled',true); //make it greyed out so users understand you can't click on it
+              $('#comment').val("Thank you for your feedback. Press the image below to rate some comments!");
+              $("#plus").attr("src", "img/swipeIcon.png")
+              $("#tapContinue").show();
+              $('#plus').off('click');
+              $('#plus').on('click', function(){
+                //loads 5 random commetns from the DB into the swipeable cards ##TODO currently doesn't allow you to go to the swipeable cards if there are less than 5 comments in the databsae
+                $('#para1').text(myDB[0].comment);
+                $('#para2').text(myDB[1].comment);
+                $('#para3').text(myDB[2].comment);
+                $('#para4').text(myDB[3].comment);
+                $('#para5').text(myDB[4].comment);
+                $('#tapContinue').hide();
+                $('#comment').hide();
+                $(this).hide();
+                $('#choiceRow').hide();
+                $('#container').show();
+                $('#instructionsRow').show();
+              });
+            });
+          });
+          function getJSONcomment()
+          {
+            //retrieves all rows from the DB in JSON format and assigns it to myDB variable
+            const Url = 'returnJSONComment.php';
+            $.getJSON(Url, function(result){
+              myDB = result;
+            });
+          }
+        </script>
+
+      </body>
+      </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" id="hitml">
+<head>
+  <title>Digital Society School Feedback </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!--should use a CSS file for this -->
+  <style type="text/css">
+  @font-face {
+    font-family: Bungee;
+    src: url(fonts/OpenSans-Bold.ttf) format("truetype");
+  }
+  .btn-yellow:hover {
+     background-color: yellow;
+  }
+  .btn-red:hover{
+    background-color:red;
+  }
+  .btn-green:hover{
+    background-color:green;
+  }
+
+  .btn-teal{
+    background-color: rgb(55,100,167);
+    <!--0099ff-->
+    color:#ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    border: none;
+  }
+  .btn-green{
+    background-color:rgb(0,148,87);
+    <!--32CD32-->
+    color:#ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    border: none;
+  }
+  .btn-red{
+    background-color: rgb(219,44,41);
+    <!--ff0000-->
+    color:#ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    border: none;
+  }
+  .btn-yellow{
+    background-color: rgb(255,233,16);
+    <!--ffff00-->
+    color:#ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    border: none;
+  }
+  .row{
+    padding-top: 10px;
+  }
+  .max {
+
+    height:75px;
+  }
+  h1 {
+    font-weight: 1000;
+    font-size: 32pt;
+  }
+  .center-block {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+  }
+  </style>
+
+</head>
+<body id="bodyID">
+  <div class="container" id="containerID">
+    <div class="row" style="margin-bottom: -50px;"> <!--margin goes negative so text overlaps over picture-->
+      <div class="col">
+        <img src="img/landingspageHeader.png" class="image-toggle" alt="header" width="100%">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>Welcome!</h1>
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p style="font-size:20px; color:lightgrey; text-align:left;"><b>With this application you can reward yourself by giving us feedback on the exhibition</b></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <img src="img/love.png" class="img-fluid" alt="love">
+      </div>
+      <div class="col align-self-center" style="text-align:center; ">
+        <img src="img/arrow.png" width="64px" height="64px" alt="arrow">
+      </div>
+      <div class="col" alt="coffeeCol">
+        <img src="img/block.png" class="img-fluid" alt="coffee">
+      </div>
+    </div>
+    <div class="row" style="padding-top:40px;">
+      <div class="col-6 offset-3">
+        <button type="button" id="indexButton" class="btn btn-primary btn-block max" onclick="changeToVote()">Let's vote!</button> <!--calls changeToVote() from vote.js, loads the vote container into bodyID-->
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="vote.js"></script> <!--should move scripts from vote.js to html, or add all functions to vote.js load it into the different pages-->
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Feedback Word Cloud</title>
+  <!-- Styling the word cloud -->
+  <style type="text/css">
+  canvas {
+    position: relative; top: 2em; left: 1; right: 1;
+    font-family: monospace;
+    white-space: nowrap;
+  }
+  .support {
+    color: #080;
+  }
+  .not_support {
+    color: #800;
+  }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div style="text-align:center">
+    <canvas id="cloudcanvas" ></canvas>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script type="text/javascript" src="../jquery.wordcloud.js"></script>
+  <script type="text/javascript">
+  // Set the canvas size for the word cloud
+  var myCanvas = document.querySelector("#cloudcanvas");
+  myCanvas.width = 1420;
+  myCanvas.height = 720;
+
+  // Draws the wordcloud on the canvas with the database data
+  window.setInterval(function(){
+    try {
+      $("#cloudcanvas").wordCloud({
+        database: { // Handy tip from Jake from DSS: NEVER put DB info in the front-end
+          dbHost: "Haha",
+          dbUser: "no",
+          dbPass: "hacking",
+          dbName: "for",
+          selectFields: "you",
+          tableName: "lolololololololol",
+        },
+        wordCountUrl: '../freq/wordcounter.php',
+        biggestWord: "1000",
+        wait: 0,
+        rotateRatio: 0,
+        gridSize: 3
+      });
+    } catch (e) { alert(e); }
+  }, 10000);
+  </script>
+</body>
+</html>
