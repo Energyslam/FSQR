@@ -9,4 +9,4 @@ The website is located at http://omega.dss.cloud/
 
 We used a QR code and NFC chips so people could use the installation more easily.
 
-![My image](https://drive.google.com/uc?id=1zB5vWxx9wwHM8W6TXj1Qb7_aAWktk8oK)
+![End results](https://i.imgur.com/t5PKrRX.jpg)
